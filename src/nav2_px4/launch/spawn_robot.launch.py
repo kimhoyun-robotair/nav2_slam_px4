@@ -56,9 +56,9 @@ def generate_launch_description():
     )
 
     tf_broadcaster_node = Node(
-        package="simple_drone",
-        executable="odom_baselink_publisher.py",
-        name="odom_baselink_publisher",
+        package="nav2_px4",
+        executable="map_baselink_publisher.py",
+        name="map_baselink_publisher",
         output="screen",
         parameters=[
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
@@ -66,7 +66,7 @@ def generate_launch_description():
     )
 
     odom_broadcaster_node = Node(
-        package="simple_drone",
+        package="nav2_px4",
         executable="odometry_publisher.py",
         name="odometry_publisher",
         output="screen",

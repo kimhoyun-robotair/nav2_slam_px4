@@ -78,7 +78,7 @@ class OdometryToTransformNode(Node):
         if self.loc_pos is not None and self.att is not None:
         
             self.odom_msg.header.stamp = self.get_clock().now().to_msg()
-            self.odom_msg.header.frame_id = 'odom'
+            self.odom_msg.header.frame_id = 'map'
             self.odom_msg.child_frame_id = 'base_link'
 
             # Set the translation from the local position message

@@ -283,7 +283,7 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-    <link name="gps_link">
+    <link name="x500_lidar_2d_0/base_link/navsat_sensor">
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <mass value="0.001"/>
@@ -293,7 +293,7 @@
 
     <joint name="gps_joint" type="fixed">
         <parent link="base_link"/>
-        <child link="gps_link"/>
+        <child link="x500_lidar_2d_0/base_link/navsat_sensor"/>
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
