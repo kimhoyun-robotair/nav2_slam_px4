@@ -1,1 +1,2 @@
-# Nav2_PX4
+# Nav2_PX
+This pkg is for slam
