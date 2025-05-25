@@ -2,16 +2,12 @@
 
 ## Introduction & Notes
 
----
-
 - This page covers the integration of `PX4`, `RTAB-MAP`, and `Nav2`.
 - Due to the limitations of `Nav2`, only **2D autonomous flight** is implemented.
 - The `PX4` version used is **1.15**. Functionality with other versions is **not guaranteed** (untested).
 - **PX4 does not broadcast TF**, so various TF-related measures have been taken.
 
 ## Basic Usage
-
----
 
 ### Installation
 
@@ -60,8 +56,6 @@ export GZ_SIM_RESOURCE_PATH=/path/to/your/px4/directory/PX4-Autopilot/Tools/simu
 ```bash
 PX4_GZ_WORLD=turtlebot3_world make px4_sitl gz_x500_rtab
 ```
-
----
 
 ## Broadcasting TF from PX4 + Receiving PX4 SITL Topics
 
