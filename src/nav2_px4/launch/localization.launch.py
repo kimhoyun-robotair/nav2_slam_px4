@@ -150,6 +150,16 @@ def generate_launch_description():
         ],
     )
 
+    cmd_vel_to_px4_node = Node(
+        package="nav2_px4",
+        executable="cmdvel_to_px4.py",
+        name="cmdvel_to_px4",
+        output="screen",
+        parameters=[
+            {'use_sim_time': LaunchConfiguration('use_sim_time')},
+        ],
+    )
+
     launchDescriptionObject = LaunchDescription()
 
     launchDescriptionObject.add_action(rviz_launch_arg)
@@ -164,5 +174,6 @@ def generate_launch_description():
     launchDescriptionObject.add_action(joint_state_publisher)
     launchDescriptionObject.add_action(tf_broadcaster_node)
     launchDescriptionObject.add_action(odom_broadcaster_node)
+    launchDescriptionObject.add_action(cmd_vel_to_px4_node)
 
     return launchDescriptionObject

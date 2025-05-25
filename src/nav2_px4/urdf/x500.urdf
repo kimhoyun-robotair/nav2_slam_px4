@@ -23,31 +23,31 @@
         <visual name="base_link_visual">
         <origin xyz="0 0 0.025" rpy="0 0 3.141592654"/>
         <geometry>
-            <mesh filename="package://simple_drone/meshes/NXP-HGD-CF.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/NXP-HGD-CF.dae" scale="1 1 1"/>
         </geometry>
         </visual>
         <visual name="5010_motor_base_0">
         <origin xyz="0.174 0.174 0.032" rpy="0 0 -0.45"/>
         <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Base.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Base.dae" scale="1 1 1"/>
         </geometry>
         </visual>
         <visual name="5010_motor_base_1">
         <origin xyz="-0.174 0.174 0.032" rpy="0 0 -0.45"/>
         <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Base.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Base.dae" scale="1 1 1"/>
         </geometry>
         </visual>
         <visual name="5010_motor_base_2">
         <origin xyz="0.174 -0.174 0.032" rpy="0 0 -0.45"/>
         <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Base.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Base.dae" scale="1 1 1"/>
         </geometry>
         </visual>
         <visual name="5010_motor_base_3">
         <origin xyz="-0.174 -0.174 0.032" rpy="0 0 -0.45"/>
         <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Base.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Base.dae" scale="1 1 1"/>
         </geometry>
         </visual>
         <visual name="NXP_FMUK66_FRONT">
@@ -134,14 +134,14 @@
         <visual name="rotor_0_visual">
             <origin xyz="-0.022 -0.14638461538461536 -0.016" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/1345_prop_ccw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
+            <mesh filename="package://nav2_px4/meshes/1345_prop_ccw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
             </geometry>
             <!-- URDF material 태그는 색상만 지원하므로 material 생략 -->
         </visual>
         <visual name="rotor_0_visual_motor_bell">
             <origin xyz="0 0 -0.032" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Bell.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Bell.dae" scale="1 1 1"/>
             </geometry>
         </visual>
         <collision name="rotor_0_collision">
@@ -166,13 +166,13 @@
         <visual name="rotor_1_visual">
             <origin xyz="-0.022 -0.14638461538461536 -0.016" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/1345_prop_ccw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
+            <mesh filename="package://nav2_px4/meshes/1345_prop_ccw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
             </geometry>
         </visual>
         <visual name="rotor_1_visual_motor_top">
             <origin xyz="0 0 -0.032" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Bell.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Bell.dae" scale="1 1 1"/>
             </geometry>
         </visual>
         <collision name="rotor_1_collision">
@@ -205,13 +205,13 @@
         <visual name="rotor_2_visual">
             <origin xyz="-0.022 -0.14638461538461536 -0.016" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/1345_prop_cw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
+            <mesh filename="package://nav2_px4/meshes/1345_prop_cw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
             </geometry>
         </visual>
         <visual name="rotor_2_visual_motor_top">
             <origin xyz="0 0 -0.032" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Bell.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Bell.dae" scale="1 1 1"/>
             </geometry>
         </visual>
         <collision name="rotor_2_collision">
@@ -244,13 +244,13 @@
         <visual name="rotor_3_visual">
             <origin xyz="-0.022 -0.14638461538461536 -0.016" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/1345_prop_cw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
+            <mesh filename="package://nav2_px4/meshes/1345_prop_cw.stl" scale="0.8461538461538461 0.8461538461538461 0.8461538461538461"/>
             </geometry>
         </visual>
         <visual name="rotor_3_visual_motor_top">
             <origin xyz="0 0 -0.032" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/5010Bell.dae" scale="1 1 1"/>
+            <mesh filename="package://nav2_px4/meshes/5010Bell.dae" scale="1 1 1"/>
             </geometry>
         </visual>
         <collision name="rotor_3_collision">
@@ -329,7 +329,7 @@
         <visual name="visual">
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-            <mesh filename="package://simple_drone/meshes/lidar_2d_v2.dae"/>
+            <mesh filename="package://nav2_px4/meshes/lidar_2d_v2.dae"/>
             </geometry>
         </visual>
     </link>

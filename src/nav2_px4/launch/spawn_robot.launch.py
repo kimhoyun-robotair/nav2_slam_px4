@@ -16,7 +16,7 @@ def generate_launch_description():
     os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
     model_arg = DeclareLaunchArgument(
-        'model', default_value='x500.urdf',
+        'model', default_value='x500_rtab.urdf',
         description='Name of the URDF description to load'
     )
 
@@ -31,6 +31,65 @@ def generate_launch_description():
         "urdf",
         LaunchConfiguration('model')  # Replace with your URDF or Xacro file
     ])
+
+    # Node to bridge /cmd_vel and /odom
+    gz_bridge_node = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
+            #"/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
+            "/model/x500_rtab_0/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry",
+            #"/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
+            #"/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
+            "/camera@sensor_msgs/msg/Image@gz.msgs.Image",
+            "/depth_camera@sensor_msgs/msg/Image@gz.msgs.Image",
+            "/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+            "/depth_camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
+            "/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/navsat_sensor/navsat@sensor_msgs/msg/NavSatFix@gz.msgs.NavSat",
+            "/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/imu_sensor/imu@sensor_msgs/msg/Imu@gz.msgs.IMU",
+            "/world/turtlebot3_world/model/x500_rtab_0/link/link/sensor/lidar_2d_v2/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
+        ],
+        output="screen",
+        parameters=[
+            {'use_sim_time': LaunchConfiguration('use_sim_time')},
+        ],
+        remappings=[
+            ('/world/turtlebot3_world/model/x500_rtab_0/link/link/sensor/lidar_2d_v2/scan', '/scan'),
+            ('/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/imu_sensor/imu', '/imu'),
+            ('/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/navsat_sensor/navsat', '/fix'),
+            ('/model/x500_rtab_0/odometry', '/odom'),
+            ('/depth_camera/points', '/camera/depth_image/points'),
+            ('/camera_info', '/camera/image/camera_info'),
+        ]
+    )
+
+    # Node to bridge camera image with image_transport and compressed_image_transport
+    gz_image_bridge_node = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=[
+            "/camera/image",
+            "/camera/depth_image"
+        ],
+        output="screen",
+        parameters=[
+            {'use_sim_time': LaunchConfiguration('use_sim_time'),
+             'camera.image.compressed.jpeg_quality': 75},
+        ],
+    )
+
+    # Relay node to republish /camera/camera_info to /camera/image/camera_info
+    relay_camera_info_node = Node(
+        package='topic_tools',
+        executable='relay',
+        name='relay_camera_info',
+        output='screen',
+        arguments=['/camera/camera_info', 'camera/image/camera_info'],
+        parameters=[
+            {'use_sim_time': LaunchConfiguration('use_sim_time')},
+        ]
+    )
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
@@ -57,7 +116,7 @@ def generate_launch_description():
 
     tf_broadcaster_node = Node(
         package="nav2_px4",
-        executable="map_baselink_publisher.py",
+        executable="odom_baselink_publisher.py",
         name="map_baselink_publisher",
         output="screen",
         parameters=[
@@ -65,11 +124,25 @@ def generate_launch_description():
         ],
     )
 
+    """
+    # Node to publish odometry information
+    # Uncomment if you want to publish odometry information not using visual odometry in PX4 SITL
     odom_broadcaster_node = Node(
         package="nav2_px4",
         executable="odometry_publisher.py",
         name="odometry_publisher",
         output="screen",
+        parameters=[
+            {'use_sim_time': LaunchConfiguration('use_sim_time')},
+        ],
+    )
+    """
+
+    image_transformer_node = Node(
+        package='nav2_px4',
+        executable='image_transform.py',
+        name='image_transform',
+        output='screen',
         parameters=[
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
         ],
@@ -82,6 +155,10 @@ def generate_launch_description():
     launchDescriptionObject.add_action(robot_state_publisher_node)
     launchDescriptionObject.add_action(joint_state_publisher)
     launchDescriptionObject.add_action(tf_broadcaster_node)
-    launchDescriptionObject.add_action(odom_broadcaster_node)
+    #launchDescriptionObject.add_action(odom_broadcaster_node)
+    launchDescriptionObject.add_action(gz_bridge_node)
+    #launchDescriptionObject.add_action(gz_image_bridge_node)
+    launchDescriptionObject.add_action(relay_camera_info_node)
+    launchDescriptionObject.add_action(image_transformer_node)
 
     return launchDescriptionObject

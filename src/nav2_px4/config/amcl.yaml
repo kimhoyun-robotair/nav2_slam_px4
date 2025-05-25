@@ -20,7 +20,7 @@ amcl:
     max_beams: 60
     max_particles: 2000
     min_particles: 500
-    odom_frame_id: "map"
+    odom_frame_id: "odom"
     pf_err: 0.02
     pf_z: 0.85
     recovery_alpha_fast: 0.0

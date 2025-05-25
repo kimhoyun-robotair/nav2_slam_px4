@@ -37,7 +37,8 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  src/map_baselink_publisher.py
+  src/image_transform.py
+  src/odom_baselink_publisher.py
   src/odometry_publisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
