@@ -16,6 +16,7 @@ git clone https://github.com/kimhoyun-robotair/nav2_slam_px4.git
 cd nav2_slam_px4
 colcon build
 # or colcon build --symlink-install
+```
 
 ### Setting up the Gazebo Development Environment
 
