@@ -50,7 +50,7 @@ PX4_SIM_MODEL=${PX4_SIM_MODEL:=x500_rtab}
 export GZ_SIM_RESOURCE_PATH=/path/to/your/px4/directory/PX4-Autopilot/Tools/simulation/gz/models
 ```
 
-    - `GZ_SIM_RESOURCE_PATH` can only specify one directory at a time. If you use another gz model directory, make sure to comment/uncomment or export accordingly when using PX4 or not.
+- `GZ_SIM_RESOURCE_PATH` can only specify one directory at a time. If you use another gz model directory, make sure to comment/uncomment or export accordingly when using PX4 or not.
 
 - Now, run PX4 as follows:
 
