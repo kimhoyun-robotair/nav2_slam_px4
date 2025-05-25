@@ -38,10 +38,7 @@ def generate_launch_description():
         executable="parameter_bridge",
         arguments=[
             "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
-            #"/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
             "/model/x500_rtab_0/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry",
-            #"/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
-            #"/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
             "/camera@sensor_msgs/msg/Image@gz.msgs.Image",
             "/depth_camera@sensor_msgs/msg/Image@gz.msgs.Image",
             "/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
@@ -62,21 +59,6 @@ def generate_launch_description():
             ('/depth_camera/points', '/camera/depth_image/points'),
             ('/camera_info', '/camera/image/camera_info'),
         ]
-    )
-
-    # Node to bridge camera image with image_transport and compressed_image_transport
-    gz_image_bridge_node = Node(
-        package="ros_gz_image",
-        executable="image_bridge",
-        arguments=[
-            "/camera/image",
-            "/camera/depth_image"
-        ],
-        output="screen",
-        parameters=[
-            {'use_sim_time': LaunchConfiguration('use_sim_time'),
-             'camera.image.compressed.jpeg_quality': 75},
-        ],
     )
 
     # Relay node to republish /camera/camera_info to /camera/image/camera_info
@@ -124,20 +106,6 @@ def generate_launch_description():
         ],
     )
 
-    """
-    # Node to publish odometry information
-    # Uncomment if you want to publish odometry information not using visual odometry in PX4 SITL
-    odom_broadcaster_node = Node(
-        package="nav2_px4",
-        executable="odometry_publisher.py",
-        name="odometry_publisher",
-        output="screen",
-        parameters=[
-            {'use_sim_time': LaunchConfiguration('use_sim_time')},
-        ],
-    )
-    """
-
     image_transformer_node = Node(
         package='nav2_px4',
         executable='image_transform.py',
@@ -155,9 +123,7 @@ def generate_launch_description():
     launchDescriptionObject.add_action(robot_state_publisher_node)
     launchDescriptionObject.add_action(joint_state_publisher)
     launchDescriptionObject.add_action(tf_broadcaster_node)
-    #launchDescriptionObject.add_action(odom_broadcaster_node)
     launchDescriptionObject.add_action(gz_bridge_node)
-    #launchDescriptionObject.add_action(gz_image_bridge_node)
     launchDescriptionObject.add_action(relay_camera_info_node)
     launchDescriptionObject.add_action(image_transformer_node)
 

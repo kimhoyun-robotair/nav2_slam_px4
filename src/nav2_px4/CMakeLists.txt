@@ -17,6 +17,8 @@ install(DIRECTORY
   rviz
   nav2_px4
   map
+  model
+  world
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -39,7 +41,6 @@ ament_python_install_package(${PROJECT_NAME})
 install(PROGRAMS
   src/image_transform.py
   src/odom_baselink_publisher.py
-  src/odometry_publisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
