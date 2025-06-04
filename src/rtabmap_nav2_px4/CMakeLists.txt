@@ -16,7 +16,7 @@ install(DIRECTORY
   urdf
   config
   rviz
-  nav2_px4
+  rtabmap_nav2_px4
   map
   model
   world
@@ -43,7 +43,6 @@ install(PROGRAMS
   src/image_transform.py
   src/odom_baselink_publisher.py
   src/velocity_transform.py
-  src/odom_flatten.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
