@@ -10,9 +10,9 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
-    pkg_simple_rover = get_package_share_directory('nav2_px4')
+    pkg_rtabmap_nav2_px4 = get_package_share_directory('rtabmap_nav2_px4')
 
-    gazebo_models_path, ignore_last_dir = os.path.split(pkg_simple_rover)
+    gazebo_models_path, ignore_last_dir = os.path.split(pkg_rtabmap_nav2_px4)
     os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
     model_arg = DeclareLaunchArgument(
@@ -27,7 +27,7 @@ def generate_launch_description():
 
     # Define the path to your URDF or Xacro file
     urdf_file_path = PathJoinSubstitution([
-        pkg_simple_rover,  # Replace with your package name
+        pkg_rtabmap_nav2_px4,  # Replace with your package name
         "urdf",
         LaunchConfiguration('model')  # Replace with your URDF or Xacro file
     ])
@@ -97,7 +97,7 @@ def generate_launch_description():
     )
 
     tf_broadcaster_node = Node(
-        package="nav2_px4",
+        package="rtabmap_nav2_px4",
         executable="odom_baselink_publisher.py",
         name="map_baselink_publisher",
         output="screen",
@@ -107,7 +107,7 @@ def generate_launch_description():
     )
 
     image_transformer_node = Node(
-        package='nav2_px4',
+        package='rtabmap_nav2_px4',
         executable='image_transform.py',
         name='image_transform',
         output='screen',
@@ -117,7 +117,7 @@ def generate_launch_description():
     )
 
     velocity_transformer_node = Node(
-        package='nav2_px4',
+        package='rtabmap_nav2_px4',
         executable='velocity_transform.py',
         name='velocity_transform',
         output='screen',
@@ -136,6 +136,6 @@ def generate_launch_description():
     launchDescriptionObject.add_action(gz_bridge_node)
     launchDescriptionObject.add_action(relay_camera_info_node)
     launchDescriptionObject.add_action(image_transformer_node)
-    launchDescriptionObject.add_action(velocity_transformer_node)
+    # launchDescriptionObject.add_action(velocity_transformer_node)
 
     return launchDescriptionObject
