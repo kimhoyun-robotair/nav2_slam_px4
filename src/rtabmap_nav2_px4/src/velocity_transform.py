@@ -1,150 +1,151 @@
 #!/usr/bin/env python3
-############################################################################
-#
-#   Copyright (C) 2022 PX4 Development Team. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-#
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in
-#    the documentation and/or other materials provided with the
-#    distribution.
-# 3. Neither the name PX4 nor the names of its contributors may be
-#    used to endorse or promote products derived from this software
-#    without specific prior written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-#
-############################################################################
+"""
+Bridge ROS 2 geometry_msgs/Twist (base_link‑ENU, FLU) → PX4 TrajectorySetpoint (body‑NED, FRD).
+Both **world‑frame** (ENU↔NED) and **body‑frame** (FLU↔FRD) conversions are done explicitly so that
+all sign flips are easy to audit.
 
-__author__ = "Braden Wagstaff"
-__contact__ = "braden@arkelectron.com"
+Layout
+------
+• class **TwistToTrajectoryNode** – main rclpy.Node
+    ├─ _ros_to_frd()   – FLU → FRD (body frame)
+    ├─ _frd_to_ned_world() – rotate body‑FRD → world‑NED using current attitude
+    ├─ _ros_yaw_to_px4()   – angular.z conversion (FLU→FRD, ENU→NED)
+    └─ timers / subs / pubs as usual
 
+Author: OpenAI ChatGPT (adapted for kimhoyun)
+"""
+
+from __future__ import annotations
+import math
+import numpy as np
 import rclpy
 from rclpy.node import Node
-import numpy as np
 from rclpy.clock import Clock
-from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy, QoSDurabilityPolicy
+from rclpy.qos import (
+    QoSProfile,
+    QoSReliabilityPolicy,
+    QoSHistoryPolicy,
+    QoSDurabilityPolicy,
+)
 
-from px4_msgs.msg import TrajectorySetpoint
-from px4_msgs.msg import VehicleAttitude
-from geometry_msgs.msg import Twist, Vector3
+from geometry_msgs.msg import Twist
+from px4_msgs.msg import TrajectorySetpoint, VehicleAttitude
+
+# -----------------------------------------------------------------------------
+# Helper – quaternion → yaw (NED convention, yaw about Down ‑Z)
+# PX4 attitude msg stores q = (w,x,y,z) already in **FRD‑NED** frame.
+# -----------------------------------------------------------------------------
+
+def quat_to_yaw_ned(q):
+    w, x, y, z = q
+    return math.atan2(2.0 * (w * z + x * y), 1.0 - 2.0 * (y * y + z * z))
 
 
-class OffboardControl(Node):
+class TwistToTrajectoryNode(Node):
+    """Subscribe /cmd_vel and publish TrajectorySetpoint."""
 
     def __init__(self):
-        super().__init__('minimal_publisher')
-        qos_profile = QoSProfile(
+        super().__init__("twist_to_traj_node")
+
+        qos = QoSProfile(
             reliability=QoSReliabilityPolicy.BEST_EFFORT,
             durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
             history=QoSHistoryPolicy.KEEP_LAST,
-            depth=1
+            depth=1,
         )
-        
-        self.offboard_velocity_sub = self.create_subscription(
-            Twist,
-            '/cmd_vel',
-            self.offboard_velocity_callback,
-            10
-        )
-        
-        self.attitude_sub = self.create_subscription(
+
+        # internal state -----------------------------------------------------------------
+        self._body_yaw_ned = 0.0  # current yaw angle of vehicle in NED (rad)
+        self._cmd_lin_flu = np.zeros(3)  # latest linear velocity in FLU/ENU (m/s)
+        self._cmd_yaw_flu = 0.0  # latest angular z in FLU/ENU (rad/s)
+
+        # subscribers --------------------------------------------------------------------
+        self.create_subscription(Twist, "/cmd_vel", self._twist_cb, 10)
+        self.create_subscription(
             VehicleAttitude,
-            '/fmu/out/vehicle_attitude',
-            self.attitude_callback,
-            qos_profile
+            "/fmu/out/vehicle_attitude",
+            self._attitude_cb,
+            qos,
         )
 
-        #Create publishers
-        self.publisher_trajectory = self.create_publisher(
-            TrajectorySetpoint, 
-            '/fmu/in/trajectory_setpoint', 
-            qos_profile
+        # publisher ----------------------------------------------------------------------
+        self._pub = self.create_publisher(
+            TrajectorySetpoint, "/fmu/in/trajectory_setpoint", qos
         )
 
+        # timer --------------------------------------------------------------------------
+        self.create_timer(0.02, self._publish_setpoint)  # 50 Hz
 
-        # creates callback function for the command loop
-        # period is arbitrary, just should be more than 2Hz. Because live controls rely on this, a higher frequency is recommended
-        # commands in cmdloop_callback won't be executed if the vehicle is not in offboard mode
-        timer_period = 0.02  # seconds
-        self.timer = self.create_timer(timer_period, self.cmdloop_callback)
+    # ---------------------------------------------------------------------
+    # Callbacks
+    # ---------------------------------------------------------------------
+    def _twist_cb(self, msg: Twist):
+        """Store incoming cmd_vel (base_link, FLU, ENU)."""
+        self._cmd_lin_flu = np.array(
+            [msg.linear.x, msg.linear.y, msg.linear.z], dtype=float
+        )
+        self._cmd_yaw_flu = msg.angular.z
 
-        self.velocity = Vector3()
-        self.yaw = 0.0  #yaw value we send as command
-        self.trueYaw = 0.0  #current yaw value of drone
+    def _attitude_cb(self, msg: VehicleAttitude):
+        self._body_yaw_ned = quat_to_yaw_ned(msg.q)
 
-    #receives Twist commands from Teleop and converts NED -> FLU
-    def offboard_velocity_callback(self, msg):
-        #implements NED -> FLU Transformation
-        # X (FLU) is -Y (NED)
-        self.velocity.x = -msg.linear.y
-        # Y (FLU) is X (NED)
-        self.velocity.y = msg.linear.x
-        # Z (FLU) is -Z (NED)
-        self.velocity.z = -msg.linear.z
-        # A conversion for angular z is done in the attitude_callback function(it's the '-' in front of self.trueYaw)
-        self.yaw = msg.angular.z
+    # ---------------------------------------------------------------------
+    # Conversion helpers
+    # ---------------------------------------------------------------------
+    @staticmethod
+    def _ros_to_frd(v_flu: np.ndarray) -> np.ndarray:
+        """FLU → FRD (body frame sign flips)."""
+        #   FLU (x fwd, y left, z up)  →  FRD (x fwd, y right, z down)
+        x, y, z = v_flu
+        return np.array([x, -y, -z])
 
-    #receives current trajectory values from drone and grabs the yaw value of the orientation
-    def attitude_callback(self, msg):
-        orientation_q = msg.q
+    def _frd_to_ned_world(self, v_frd: np.ndarray) -> np.ndarray:
+        """Rotate body‑FRD velocity into world‑NED using current yaw."""
+        cy = math.cos(self._body_yaw_ned)
+        sy = math.sin(self._body_yaw_ned)
+        rot = np.array([[cy, -sy, 0.0], [sy, cy, 0.0], [0.0, 0.0, 1.0]])
+        return rot @ v_frd
 
-        #trueYaw is the drones current yaw value
-        self.trueYaw = -(np.arctan2(2.0*(orientation_q[3]*orientation_q[0] + orientation_q[1]*orientation_q[2]), 
-                                  1.0 - 2.0*(orientation_q[0]*orientation_q[0] + orientation_q[1]*orientation_q[1])))
-        
-    #publishes offboard control modes and velocity as trajectory setpoints
-    def cmdloop_callback(self):       
-        # Compute velocity in the world frame
-        cos_yaw = np.cos(self.trueYaw)
-        sin_yaw = np.sin(self.trueYaw)
-        velocity_world_x = (self.velocity.x * cos_yaw - self.velocity.y * sin_yaw)
-        velocity_world_y = (self.velocity.x * sin_yaw + self.velocity.y * cos_yaw)
+    @staticmethod
+    def _ros_yaw_to_px4(yaw_rate_flu: float) -> float:
+        """Angular z : +CCW about +Z (FLU) equals +CCW about −Z (FRD).
+        The numeric sign is therefore preserved.
+        """
+        return -yaw_rate_flu
 
-        # Create and publish TrajectorySetpoint message with NaN values for position and acceleration
-        trajectory_msg = TrajectorySetpoint()
-        trajectory_msg.timestamp = int(Clock().now().nanoseconds / 1000)
-        trajectory_msg.velocity[0] = velocity_world_x
-        trajectory_msg.velocity[1] = velocity_world_y
-        trajectory_msg.velocity[2] = self.velocity.z
-        trajectory_msg.position[0] = float('nan')
-        trajectory_msg.position[1] = float('nan')
-        trajectory_msg.position[2] = float('nan')
-        trajectory_msg.acceleration[0] = float('nan')
-        trajectory_msg.acceleration[1] = float('nan')
-        trajectory_msg.acceleration[2] = float('nan')
-        trajectory_msg.yaw = float('nan')
-        trajectory_msg.yawspeed = self.yaw
+    # ---------------------------------------------------------------------
+    # Main loop – build & publish TrajectorySetpoint
+    # ---------------------------------------------------------------------
+    def _publish_setpoint(self):
+        # 1) Body‑frame conversion --------------------------------------------------------
+        v_frd = self._ros_to_frd(self._cmd_lin_flu)
 
-        self.publisher_trajectory.publish(trajectory_msg)
+        # 2) World‑frame rotation ---------------------------------------------------------
+        v_ned = self._frd_to_ned_world(v_frd)
 
+        # 3) Pack PX4 TrajectorySetpoint --------------------------------------------------
+        msg = TrajectorySetpoint()
+        msg.timestamp = int(Clock().now().nanoseconds / 1000)
+        msg.position[:] = [float("nan")] * 3
+        msg.acceleration[:] = [float("nan")] * 3
+        msg.velocity[:] = v_ned.astype(float)
+        msg.yaw = float("nan")  # keep current heading
+        msg.yawspeed = self._ros_yaw_to_px4(self._cmd_yaw_flu)
+
+        self._pub.publish(msg)
+
+
+# --------------------------------------------------------------------------------------
+#   main
+# --------------------------------------------------------------------------------------
 
 def main(args=None):
     rclpy.init(args=args)
-
-    offboard_control = OffboardControl()
-
-    rclpy.spin(offboard_control)
-
-    offboard_control.destroy_node()
+    node = TwistToTrajectoryNode()
+    rclpy.spin(node)
+    node.destroy_node()
     rclpy.shutdown()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

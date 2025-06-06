@@ -1,0 +1,3 @@
+[submodule "src/ROS2_PX4_Offboard_Example"]
+	path = src/ROS2_PX4_Offboard_Example
+	url = https://github.com/kimhoyun-robotair/ROS2_PX4_Offboard_Example.git

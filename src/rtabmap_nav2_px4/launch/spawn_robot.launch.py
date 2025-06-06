@@ -136,6 +136,6 @@ def generate_launch_description():
     launchDescriptionObject.add_action(gz_bridge_node)
     launchDescriptionObject.add_action(relay_camera_info_node)
     launchDescriptionObject.add_action(image_transformer_node)
-    # launchDescriptionObject.add_action(velocity_transformer_node)
+    launchDescriptionObject.add_action(velocity_transformer_node)
 
     return launchDescriptionObject
