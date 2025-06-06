@@ -7,6 +7,10 @@
 - The `PX4` version used is **1.15**. Functionality with other versions is **not guaranteed** (untested).
 - **PX4 does not broadcast TF**, so various TF-related measures have been taken.
 
+### Notice!!
+
+RTAB-MAP is currently set to localization mode, which operates based on the rtabmap.db file in the .ros directory. If you haven’t performed mapping with RTAB-MAP yet, open rtabmap.launch.py, disable localization mode, and then run mapping.
+
 ## Basic Usage
 
 ### Installation
@@ -18,7 +22,35 @@ colcon build
 # or colcon build --symlink-install
 ```
 
-### Setting up the Gazebo Development Environment
+## Usage
+
+```bash
+# Terminal 1 
+cd ~/path/to/PX4-Autopilot
+PX4_GZ_WORLD=your_own_map make px4_sitl gz_x500_rtab
+
+# Terminal 2 
+MicroXRCEAgent udp4 -p 8888
+
+# Terminal 3 (optional) 
+cd ~/path/to/QGC
+./QGroundControl.AppImage
+
+# Terminal 4 
+cd ~/path/to/nav2_slam_px4
+source install/setup.bash
+ros2 launch rtabmap_nav2_px4 bringup.launch.py
+```
+
+- The following nodes will run:
+1. TF publishing (odom ↔ base_link ↔ sensor_link etc)
+2. Keyboard-based PX4 velocity control node (in a separate terminal)
+3. Node for logging current velocity, position, etc. (in a separate terminal)
+4. RTAB-MAP node
+5. Nav2 node
+
+### Setting up the Gazebo Development Environment (optional)
+**It is recommended to use your own custom map**
 
 - Go to the `~/nav2_slam_px4/src/nav2_px4` package.
 - Copy the **lidar_2d_v2** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
@@ -98,12 +130,4 @@ MicroXRCEAgent udp4 -p 8888
 cd ~/nav2_slam_px4
 source install/setup.bash
 ros2 launch nav2_px4 spawn_robot.launch.py
-```
-
-## Using RTAB-MAP in PX4 SITL
-You can run RTAB-MAP with the following launch file:
-
-```bash
-source install/setup.bash
-ros2 launch nav2_px4 rtabmap.launch.py
 ```
