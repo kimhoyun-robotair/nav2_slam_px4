@@ -43,6 +43,7 @@ install(PROGRAMS
   src/image_transform.py
   src/odom_baselink_publisher.py
   src/velocity_transform.py
+  src/tracking_log.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

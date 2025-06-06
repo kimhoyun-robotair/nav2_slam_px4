@@ -126,6 +126,17 @@ def generate_launch_description():
         ],
     )
 
+    tracking_log_node = Node(
+        package='rtabmap_nav2_px4',
+        executable='tracking_log.py',
+        name='px4_topic_monitor',
+        output='screen',
+        parameters=[
+            {'use_sim_time': LaunchConfiguration('use_sim_time')},
+        ],
+        prefix=['gnome-terminal -- ']
+    )
+
     launchDescriptionObject = LaunchDescription()
 
     launchDescriptionObject.add_action(model_arg)
@@ -137,5 +148,6 @@ def generate_launch_description():
     launchDescriptionObject.add_action(relay_camera_info_node)
     launchDescriptionObject.add_action(image_transformer_node)
     launchDescriptionObject.add_action(velocity_transformer_node)
+    launchDescriptionObject.add_action(tracking_log_node)
 
     return launchDescriptionObject

@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 """
-Bridge ROS 2 geometry_msgs/Twist (base_link‑ENU, FLU) → PX4 TrajectorySetpoint (body‑NED, FRD).
-Both **world‑frame** (ENU↔NED) and **body‑frame** (FLU↔FRD) conversions are done explicitly so that
+Bridge ROS2 geometry_msgs/Twist (base_link-ENU, FLU) → PX4 TrajectorySetpoint (body-NED, FRD).
+Both world-frame (ENU↔NED) and body-frame (FLU↔FRD) conversions are done explicitly so that
 all sign flips are easy to audit.
 
 Layout
 ------
-• class **TwistToTrajectoryNode** – main rclpy.Node
-    ├─ _ros_to_frd()   – FLU → FRD (body frame)
-    ├─ _frd_to_ned_world() – rotate body‑FRD → world‑NED using current attitude
-    ├─ _ros_yaw_to_px4()   – angular.z conversion (FLU→FRD, ENU→NED)
+• class **TwistToTrajectoryNode - main rclpy.Node
+    ├─ _ros_to_frd()   - FLU → FRD (body frame)
+    ├─ _frd_to_ned_world() - rotate body-FRD → world-NED using current attitude
+    ├─ _ros_yaw_to_px4()   - angular.z conversion (FLU→FRD, ENU→NED)
     └─ timers / subs / pubs as usual
-
-Author: OpenAI ChatGPT (adapted for kimhoyun)
 """
 
 from __future__ import annotations
@@ -29,7 +27,7 @@ from rclpy.qos import (
 )
 
 from geometry_msgs.msg import Twist
-from px4_msgs.msg import TrajectorySetpoint, VehicleAttitude
+from px4_msgs.msg import TrajectorySetpoint, VehicleAttitude, VehicleLocalPosition
 
 # -----------------------------------------------------------------------------
 # Helper – quaternion → yaw (NED convention, yaw about Down ‑Z)
@@ -67,6 +65,12 @@ class TwistToTrajectoryNode(Node):
             self._attitude_cb,
             qos,
         )
+        self.create_subscription(
+            VehicleLocalPosition,
+            "/fmu/out/vehicle_local_position",
+            self._local_cb,
+            qos,
+        )
 
         # publisher ----------------------------------------------------------------------
         self._pub = self.create_publisher(
@@ -88,6 +92,9 @@ class TwistToTrajectoryNode(Node):
 
     def _attitude_cb(self, msg: VehicleAttitude):
         self._body_yaw_ned = quat_to_yaw_ned(msg.q)
+
+    def _local_cb(self, msg: VehicleLocalPosition):
+        self.vehicle_local_position = msg
 
     # ---------------------------------------------------------------------
     # Conversion helpers
@@ -126,7 +133,7 @@ class TwistToTrajectoryNode(Node):
         # 3) Pack PX4 TrajectorySetpoint --------------------------------------------------
         msg = TrajectorySetpoint()
         msg.timestamp = int(Clock().now().nanoseconds / 1000)
-        msg.position[:] = [float("nan")] * 3
+        msg.position[:] = [float('nan'), float('nan'), float('nan')]
         msg.acceleration[:] = [float("nan")] * 3
         msg.velocity[:] = v_ned.astype(float)
         msg.yaw = float("nan")  # keep current heading
