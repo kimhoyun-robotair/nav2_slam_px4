@@ -9,7 +9,7 @@
 
 ### Notice!!
 
-RTAB-MAP is currently set to localization mode, which operates based on the rtabmap.db file in the .ros directory. If you haven’t performed mapping with RTAB-MAP yet, open rtabmap.launch.py, disable localization mode, and then run mapping.
+RTAB-MAP is currently set to **localization mode**, which operates based on the rtabmap.db file in the `.ros` directory. **If you haven’t performed mapping with RTAB-MAP yet, open `rtabmap.launch.py`, disable localization mode, and then run mapping.**
 
 ## Basic Usage
 
