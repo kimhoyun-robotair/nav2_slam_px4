@@ -1,0 +1,473 @@
+[INFO] [launch]: All log files can be found below /home/kimhoyun/.ros/log/2025-06-13-00-07-07-345186-kimhoyun-ROG-Strix-G713QY-G713QY-70658
+[INFO] [launch]: Default logging verbosity is set to INFO
+[ERROR] [height_control.py-9]: exception occurred while executing process:
+Traceback (most recent call last):
+  File "/opt/ros/humble/lib/python3.10/site-packages/launch/actions/execute_local.py", line 546, in __execute_process
+    transport, self._subprocess_protocol = await async_execute_process(
+  File "/opt/ros/humble/lib/python3.10/site-packages/osrf_pycommon/process_utils/async_execute_process_asyncio/impl.py", line 139, in async_execute_process
+    transport, protocol = await _async_execute_process_nopty(
+  File "/opt/ros/humble/lib/python3.10/site-packages/osrf_pycommon/process_utils/async_execute_process_asyncio/impl.py", line 45, in _async_execute_process_nopty
+    transport, protocol = await loop.subprocess_exec(
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1681, in subprocess_exec
+    transport = await self._make_subprocess_transport(
+  File "/usr/lib/python3.10/asyncio/unix_events.py", line 207, in _make_subprocess_transport
+    transp = _UnixSubprocessTransport(self, protocol, args, shell,
+  File "/usr/lib/python3.10/asyncio/base_subprocess.py", line 36, in __init__
+    self._start(args=args, shell=shell, stdin=stdin, stdout=stdout,
+  File "/usr/lib/python3.10/asyncio/unix_events.py", line 799, in _start
+    self._proc = subprocess.Popen(
+  File "/usr/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.10/subprocess.py", line 1751, in _execute_child
+    self._posix_spawn(args, executable, env, restore_signals,
+  File "/usr/lib/python3.10/subprocess.py", line 1696, in _posix_spawn
+    self.pid = os.posix_spawn(executable, args, env, **kwargs)
+OSError: [Errno 8] Exec format error: '/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/height_control.py'
+
+[INFO] [robot_state_publisher-1]: process started with pid [70660]
+[INFO] [joint_state_publisher-2]: process started with pid [70662]
+[INFO] [odom_baselink_publisher.py-3]: process started with pid [70664]
+[INFO] [parameter_bridge-4]: process started with pid [70666]
+[INFO] [relay-5]: process started with pid [70668]
+[INFO] [image_transform.py-6]: process started with pid [70670]
+[INFO] [velocity_transform.py-7]: process started with pid [70672]
+[INFO] [gnome-terminal-8]: process started with pid [70674]
+[INFO] [rgbd_sync-10]: process started with pid [70677]
+[INFO] [rtabmap-11]: process started with pid [70679]
+[INFO] [rtabmap_viz-12]: process started with pid [70681]
+[INFO] [rviz2-13]: process started with pid [70683]
+[INFO] [controller_server-14]: process started with pid [70687]
+[INFO] [smoother_server-15]: process started with pid [70689]
+[INFO] [planner_server-16]: process started with pid [70697]
+[INFO] [behavior_server-17]: process started with pid [70705]
+[INFO] [bt_navigator-18]: process started with pid [70711]
+[INFO] [waypoint_follower-19]: process started with pid [70714]
+[INFO] [lifecycle_manager-20]: process started with pid [70735]
+[planner_server-16] [INFO] [1749740827.898175484] [planner_server]: 
+[planner_server-16] 	planner_server lifecycle node launched. 
+[planner_server-16] 	Waiting on external lifecycle transitions to activate
+[planner_server-16] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[behavior_server-17] [INFO] [1749740827.898479014] [behavior_server]: 
+[behavior_server-17] 	behavior_server lifecycle node launched. 
+[behavior_server-17] 	Waiting on external lifecycle transitions to activate
+[behavior_server-17] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-16] [INFO] [1749740827.905364251] [planner_server]: Creating
+[robot_state_publisher-1] [INFO] [1749740827.933745039] [robot_state_publisher]: got segment body
+[robot_state_publisher-1] [INFO] [1749740827.933877249] [robot_state_publisher]: got segment camera_link_optical
+[robot_state_publisher-1] [INFO] [1749740827.934106748] [robot_state_publisher]: got segment depth_camera_link_optical
+[robot_state_publisher-1] [INFO] [1749740827.934125186] [robot_state_publisher]: got segment rotor_0
+[robot_state_publisher-1] [INFO] [1749740827.934137268] [robot_state_publisher]: got segment rotor_1
+[robot_state_publisher-1] [INFO] [1749740827.934149979] [robot_state_publisher]: got segment rotor_2
+[robot_state_publisher-1] [INFO] [1749740827.934162481] [robot_state_publisher]: got segment rotor_3
+[robot_state_publisher-1] [INFO] [1749740827.934173935] [robot_state_publisher]: got segment x500_rtab_0/OakD-Lite/base_link/IMX214
+[robot_state_publisher-1] [INFO] [1749740827.934184830] [robot_state_publisher]: got segment x500_rtab_0/OakD-Lite/base_link/StereoOV7251
+[robot_state_publisher-1] [INFO] [1749740827.934195935] [robot_state_publisher]: got segment x500_rtab_0/base_footprint
+[robot_state_publisher-1] [INFO] [1749740827.934207319] [robot_state_publisher]: got segment x500_rtab_0/base_link/imu_sensor
+[robot_state_publisher-1] [INFO] [1749740827.934219541] [robot_state_publisher]: got segment x500_rtab_0/base_link/navsat_sensor
+[robot_state_publisher-1] [INFO] [1749740827.934232462] [robot_state_publisher]: got segment x500_rtab_0/link/lidar_2d_v2
+[smoother_server-15] [INFO] [1749740827.935074469] [smoother_server]: 
+[smoother_server-15] 	smoother_server lifecycle node launched. 
+[smoother_server-15] 	Waiting on external lifecycle transitions to activate
+[smoother_server-15] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[parameter_bridge-4] [INFO] [1749740827.935102615] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[smoother_server-15] [INFO] [1749740827.945806566] [smoother_server]: Creating smoother server
+[parameter_bridge-4] [INFO] [1749740827.946138521] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/model/x500_rtab_0/odometry (gz.msgs.Odometry) -> /model/x500_rtab_0/odometry (nav_msgs/msg/Odometry)] (Lazy 0)
+[lifecycle_manager-20] [INFO] [1749740827.949520867] [lifecycle_manager_navigation]: Creating
+[parameter_bridge-4] [INFO] [1749740827.959077674] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/model/x500_rtab_0/odometry (nav_msgs/msg/Odometry) -> /model/x500_rtab_0/odometry (gz.msgs.Odometry)] (Lazy 0)
+[lifecycle_manager-20] [INFO] [1749740827.966268815] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[parameter_bridge-4] [INFO] [1749740827.968759147] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera (gz.msgs.Image) -> /camera (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740827.985432156] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera (sensor_msgs/msg/Image) -> /camera (gz.msgs.Image)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740827.998644667] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/depth_camera (gz.msgs.Image) -> /depth_camera (sensor_msgs/msg/Image)] (Lazy 0)
+[planner_server-16] [INFO] [1749740828.005091301] [global_costmap.global_costmap]: 
+[planner_server-16] 	global_costmap lifecycle node launched. 
+[planner_server-16] 	Waiting on external lifecycle transitions to activate
+[planner_server-16] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-16] [INFO] [1749740828.011681597] [global_costmap.global_costmap]: Creating Costmap
+[parameter_bridge-4] [INFO] [1749740828.020665426] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/depth_camera (sensor_msgs/msg/Image) -> /depth_camera (gz.msgs.Image)] (Lazy 0)
+[waypoint_follower-19] [INFO] [1749740828.023684387] [waypoint_follower]: 
+[waypoint_follower-19] 	waypoint_follower lifecycle node launched. 
+[waypoint_follower-19] 	Waiting on external lifecycle transitions to activate
+[waypoint_follower-19] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[waypoint_follower-19] [INFO] [1749740828.027616034] [waypoint_follower]: Creating
+[parameter_bridge-4] [INFO] [1749740828.029942798] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/camera_info (gz.msgs.CameraInfo) -> /camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[controller_server-14] [INFO] [1749740828.030723414] [controller_server]: 
+[controller_server-14] 	controller_server lifecycle node launched. 
+[controller_server-14] 	Waiting on external lifecycle transitions to activate
+[controller_server-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-18] [INFO] [1749740828.034373322] [bt_navigator]: 
+[bt_navigator-18] 	bt_navigator lifecycle node launched. 
+[bt_navigator-18] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-18] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-18] [INFO] [1749740828.034579144] [bt_navigator]: Creating
+[parameter_bridge-4] [INFO] [1749740828.037237933] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/camera_info (sensor_msgs/msg/CameraInfo) -> /camera_info (gz.msgs.CameraInfo)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740828.043561017] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/depth_camera/points (gz.msgs.PointCloudPacked) -> /depth_camera/points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740828.049659561] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/depth_camera/points (sensor_msgs/msg/PointCloud2) -> /depth_camera/points (gz.msgs.PointCloudPacked)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740828.058092132] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat) -> /world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/navsat_sensor/navsat (sensor_msgs/msg/NavSatFix)] (Lazy 0)
+[controller_server-14] [INFO] [1749740828.058531434] [controller_server]: Creating controller server
+[parameter_bridge-4] [INFO] [1749740828.061776332] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/navsat_sensor/navsat (sensor_msgs/msg/NavSatFix) -> /world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/navsat_sensor/navsat (gz.msgs.NavSat)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740828.066918399] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/imu_sensor/imu (gz.msgs.IMU) -> /world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/imu_sensor/imu (sensor_msgs/msg/Imu)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740828.070113220] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/imu_sensor/imu (sensor_msgs/msg/Imu) -> /world/turtlebot3_world/model/x500_rtab_0/link/base_link/sensor/imu_sensor/imu (gz.msgs.IMU)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740828.077611594] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/world/turtlebot3_world/model/x500_rtab_0/link/link/sensor/lidar_2d_v2/scan (gz.msgs.LaserScan) -> /world/turtlebot3_world/model/x500_rtab_0/link/link/sensor/lidar_2d_v2/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1749740828.079932142] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/world/turtlebot3_world/model/x500_rtab_0/link/link/sensor/lidar_2d_v2/scan (sensor_msgs/msg/LaserScan) -> /world/turtlebot3_world/model/x500_rtab_0/link/link/sensor/lidar_2d_v2/scan (gz.msgs.LaserScan)] (Lazy 0)
+[controller_server-14] [INFO] [1749740828.129253454] [local_costmap.local_costmap]: 
+[controller_server-14] 	local_costmap lifecycle node launched. 
+[controller_server-14] 	Waiting on external lifecycle transitions to activate
+[controller_server-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-14] [INFO] [1749740828.130493277] [local_costmap.local_costmap]: Creating Costmap
+[lifecycle_manager-20] [INFO] [1749740828.259219420] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-20] [INFO] [1749740828.259400170] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[INFO] [gnome-terminal-8]: process has finished cleanly [pid 70674]
+[controller_server-14] [INFO] [1749740828.390144169] [controller_server]: Configuring controller interface
+[controller_server-14] [INFO] [1749740828.390800607] [controller_server]: getting goal checker plugins..
+[controller_server-14] [INFO] [1749740828.391076341] [controller_server]: Controller frequency set to 20.0000Hz
+[controller_server-14] [INFO] [1749740828.391178798] [local_costmap.local_costmap]: Configuring
+[controller_server-14] [INFO] [1749740828.446774934] [local_costmap.local_costmap]: Using plugin "voxel_layer"
+[controller_server-14] [INFO] [1749740828.473465493] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[controller_server-14] [INFO] [1749740828.495926810] [voxel_grid]: Error, this implementation can only support up to 16 z values (32)
+[controller_server-14] [INFO] [1749740828.496066353] [local_costmap.local_costmap]: Initialized plugin "voxel_layer"
+[controller_server-14] [INFO] [1749740828.496120760] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[controller_server-14] [INFO] [1749740828.497968551] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[controller_server-14] [INFO] [1749740828.516990464] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[controller_server-14] [INFO] [1749740828.518815278] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[controller_server-14] [INFO] [1749740828.519333221] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[controller_server-14] [INFO] [1749740828.522767738] [controller_server]: Created controller : FollowPath of type dwb_core::DWBLocalPlanner
+[controller_server-14] [INFO] [1749740828.524787060] [controller_server]: Setting transform_tolerance to 0.200000
+[controller_server-14] [INFO] [1749740828.546199291] [controller_server]: Using critic "RotateToGoal" (dwb_critics::RotateToGoalCritic)
+[controller_server-14] [INFO] [1749740828.546974530] [controller_server]: Critic plugin initialized
+[controller_server-14] [INFO] [1749740828.547187546] [controller_server]: Using critic "Oscillation" (dwb_critics::OscillationCritic)
+[controller_server-14] [INFO] [1749740828.547920949] [controller_server]: Critic plugin initialized
+[controller_server-14] [INFO] [1749740828.548114689] [controller_server]: Using critic "BaseObstacle" (dwb_critics::BaseObstacleCritic)
+[controller_server-14] [INFO] [1749740828.548566982] [controller_server]: Critic plugin initialized
+[controller_server-14] [INFO] [1749740828.548766867] [controller_server]: Using critic "GoalAlign" (dwb_critics::GoalAlignCritic)
+[controller_server-14] [INFO] [1749740828.549565713] [controller_server]: Critic plugin initialized
+[controller_server-14] [INFO] [1749740828.549809459] [controller_server]: Using critic "PathAlign" (dwb_critics::PathAlignCritic)
+[controller_server-14] [INFO] [1749740828.550273415] [controller_server]: Critic plugin initialized
+[controller_server-14] [INFO] [1749740828.550448018] [controller_server]: Using critic "PathDist" (dwb_critics::PathDistCritic)
+[controller_server-14] [INFO] [1749740828.550791986] [controller_server]: Critic plugin initialized
+[controller_server-14] [INFO] [1749740828.550966939] [controller_server]: Using critic "GoalDist" (dwb_critics::GoalDistCritic)
+[controller_server-14] [INFO] [1749740828.551280247] [controller_server]: Critic plugin initialized
+[controller_server-14] [INFO] [1749740828.551311257] [controller_server]: Controller Server has FollowPath  controllers available.
+[lifecycle_manager-20] [INFO] [1749740828.564429831] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[smoother_server-15] [INFO] [1749740828.565058403] [smoother_server]: Configuring smoother server
+[smoother_server-15] [INFO] [1749740828.611406989] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[smoother_server-15] [INFO] [1749740828.617445400] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[lifecycle_manager-20] [INFO] [1749740828.652815489] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-16] [INFO] [1749740828.654027236] [planner_server]: Configuring
+[planner_server-16] [INFO] [1749740828.654142963] [global_costmap.global_costmap]: Configuring
+[planner_server-16] [INFO] [1749740828.669198866] [global_costmap.global_costmap]: Using plugin "static_layer"
+[planner_server-16] [INFO] [1749740828.675455461] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[planner_server-16] [INFO] [1749740828.678011443] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[planner_server-16] [INFO] [1749740828.678075348] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[planner_server-16] [INFO] [1749740828.678974625] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[planner_server-16] [INFO] [1749740828.684889905] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[planner_server-16] [INFO] [1749740828.684999417] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[planner_server-16] [INFO] [1749740828.686060725] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[planner_server-16] [INFO] [1749740828.703406376] [planner_server]: Created global planner plugin GridBased of type nav2_navfn_planner/NavfnPlanner
+[planner_server-16] [INFO] [1749740828.703531462] [planner_server]: Configuring plugin GridBased of type NavfnPlanner
+[planner_server-16] [INFO] [1749740828.705568524] [planner_server]: Planner Server has GridBased  planners available.
+[lifecycle_manager-20] [INFO] [1749740828.719970432] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-17] [INFO] [1749740828.720394858] [behavior_server]: Configuring
+[behavior_server-17] [INFO] [1749740828.734627192] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-17] [INFO] [1749740828.735945377] [behavior_server]: Configuring spin
+[behavior_server-17] [INFO] [1749740828.745621194] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-17] [INFO] [1749740828.747056223] [behavior_server]: Configuring backup
+[behavior_server-17] [INFO] [1749740828.760459052] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-17] [INFO] [1749740828.762254742] [behavior_server]: Configuring drive_on_heading
+[rtabmap-11] [INFO] [1749740828.876447256] [rtabmap]: rtabmap(maps): latch                      = true
+[rtabmap-11] [INFO] [1749740828.877083441] [rtabmap]: rtabmap(maps): map_filter_radius          = 0.000000
+[rtabmap-11] [INFO] [1749740828.877132958] [rtabmap]: rtabmap(maps): map_filter_angle           = 30.000000
+[rtabmap-11] [INFO] [1749740828.877151117] [rtabmap]: rtabmap(maps): map_cleanup                = true
+[rtabmap-11] [INFO] [1749740828.877165854] [rtabmap]: rtabmap(maps): map_always_update          = false
+[rtabmap-11] [INFO] [1749740828.877180311] [rtabmap]: rtabmap(maps): map_empty_ray_tracing      = true
+[rtabmap-11] [INFO] [1749740828.877194000] [rtabmap]: rtabmap(maps): cloud_output_voxelized     = true
+[rtabmap-11] [INFO] [1749740828.877207479] [rtabmap]: rtabmap(maps): cloud_subtract_filtering   = false
+[rtabmap-11] [INFO] [1749740828.877219282] [rtabmap]: rtabmap(maps): cloud_subtract_filtering_min_neighbors = 2
+[rtabmap-11] [INFO] [1749740828.877658095] [rtabmap]: rtabmap(maps): octomap_tree_depth         = 16
+[rtabmap-11] [INFO] [1749740828.907701736] [rtabmap]: rtabmap: frame_id      = x500_rtab_0/base_footprint
+[rtabmap-11] [INFO] [1749740828.907767596] [rtabmap]: rtabmap: odom_frame_id = x500_rtab_0/odom
+[rtabmap-11] [INFO] [1749740828.907779400] [rtabmap]: rtabmap: map_frame_id  = map
+[rtabmap-11] [INFO] [1749740828.907791762] [rtabmap]: rtabmap: log_to_rosout_level  = 4
+[rtabmap-11] [INFO] [1749740828.907803844] [rtabmap]: rtabmap: initial_pose  = 
+[rtabmap-11] [INFO] [1749740828.907813692] [rtabmap]: rtabmap: use_action_for_goal  = false
+[rtabmap-11] [INFO] [1749740828.907823749] [rtabmap]: rtabmap: tf_delay      = 0.050000
+[rtabmap-11] [INFO] [1749740828.907845609] [rtabmap]: rtabmap: tf_tolerance  = 0.100000
+[rtabmap-11] [INFO] [1749740828.907856993] [rtabmap]: rtabmap: odom_sensor_sync   = false
+[rtabmap-11] [INFO] [1749740828.907866562] [rtabmap]: rtabmap: pub_loc_pose_only_when_localizing = false
+[rtabmap-11] [INFO] [1749740828.907877108] [rtabmap]: rtabmap: wait_for_transform = 0.200000
+[rtabmap-11] [INFO] [1749740828.907888422] [rtabmap]: rtabmap: gen_scan  = false
+[rtabmap-11] [INFO] [1749740828.907898549] [rtabmap]: rtabmap: gen_depth  = false
+[rtabmap-11] [INFO] [1749740828.933222034] [rtabmap]: Setting RTAB-Map parameter "Icp/CorrespondenceRatio"="0.2"
+[rtabmap-11] [INFO] [1749740828.933709387] [rtabmap]: Setting RTAB-Map parameter "Icp/MaxCorrespondenceDistance"="0.15"
+[rtabmap-11] [INFO] [1749740828.934262320] [rtabmap]: Setting RTAB-Map parameter "Icp/PointToPlane"="false"
+[rtabmap-11] [INFO] [1749740828.934921064] [rtabmap]: Setting RTAB-Map parameter "Icp/VoxelSize"="0.05"
+[rtabmap-11] [INFO] [1749740828.938971511] [rtabmap]: Setting RTAB-Map parameter "Mem/IncrementalMemory"="False"
+[rtabmap-11] [INFO] [1749740828.939121181] [rtabmap]: Setting RTAB-Map parameter "Mem/InitWMWithAllNodes"="True"
+[rtabmap-11] [INFO] [1749740828.940299195] [rtabmap]: Setting RTAB-Map parameter "Mem/STMSize"="30"
+[rtabmap-11] [INFO] [1749740828.943586625] [rtabmap]: Setting RTAB-Map parameter "RGBD/LocalRadius"="5"
+[rtabmap-11] [INFO] [1749740828.944236080] [rtabmap]: Setting RTAB-Map parameter "RGBD/NeighborLinkRefining"="true"
+[rtabmap-11] [INFO] [1749740828.944383166] [rtabmap]: Setting RTAB-Map parameter "RGBD/OptimizeFromGraphEnd"="false"
+[rtabmap-11] [INFO] [1749740828.944473331] [rtabmap]: Setting RTAB-Map parameter "RGBD/OptimizeMaxError"="4"
+[rtabmap-11] [INFO] [1749740828.944890563] [rtabmap]: Setting RTAB-Map parameter "RGBD/ProximityBySpace"="true"
+[rtabmap-11] [INFO] [1749740828.944983592] [rtabmap]: Setting RTAB-Map parameter "RGBD/ProximityByTime"="false"
+[rtabmap-11] [INFO] [1749740828.945491547] [rtabmap]: Setting RTAB-Map parameter "RGBD/ProximityPathMaxNeighbors"="10"
+[rtabmap-11] [INFO] [1749740828.945754081] [rtabmap]: Setting RTAB-Map parameter "Reg/Force3DoF"="false"
+[rtabmap-11] [INFO] [1749740828.945912621] [rtabmap]: Setting RTAB-Map parameter "Reg/Strategy"="1"
+[rtabmap-11] [INFO] [1749740828.953455274] [rtabmap]: Setting RTAB-Map parameter "Vis/MinInliers"="12"
+[rtabmap-11] [WARN] [1749740828.955563015] [rtabmap]: Setting "Grid/Sensor" parameter to 0 (default 1) as "subscribe_scan" or "subscribe_scan_cloud" or "gen_scan" is true. The occupancy grid map will be constructed from laser scans. To get occupancy grid map from cloud projection, set "Grid/Sensor" to true. To suppress this warning, add <param name="Grid/Sensor" type="string" value="0"/>
+[rtabmap-11] [INFO] [1749740828.955645847] [rtabmap]: Setting "Grid/RangeMax" parameter to 0 (default 5.000000) as "subscribe_scan" or "subscribe_scan_cloud" or "gen_scan" is true and Grid/Sensor is 0.
+[rtabmap-11] [INFO] [1749740828.957595956] [rtabmap]: Update RTAB-Map parameter "Db/TargetVersion"="0.21.10" from database
+[rtabmap-11] [INFO] [1749740828.957775728] [rtabmap]: Update RTAB-Map parameter "Rtabmap/PublishRAMUsage"="true" from database
+[rtabmap-11] [INFO] [1749740828.957992166] [rtabmap]: RTAB-Map detection rate = 1.000000 Hz
+[rtabmap-11] [INFO] [1749740828.958091550] [rtabmap]: rtabmap: Using database from "/home/kimhoyun/.ros/rtabmap.db" (573 MB).
+[rviz2-13] [INFO] [1749740829.025891409] [rviz2]: Stereo is NOT SUPPORTED
+[rviz2-13] [INFO] [1749740829.026075929] [rviz2]: OpenGl version: 4.6 (GLSL 4.6)
+[rviz2-13] [INFO] [1749740829.049889864] [rviz2]: Stereo is NOT SUPPORTED
+[behavior_server-17] [INFO] [1749740829.135673653] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-17] [INFO] [1749740829.142367454] [behavior_server]: Configuring wait
+[joint_state_publisher-2] [INFO] [1749740829.202355910] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[rgbd_sync-10] [INFO] [1749740829.207976251] [rgbd_sync]: rgbd_sync: approx_sync = true
+[rgbd_sync-10] [INFO] [1749740829.208314632] [rgbd_sync]: rgbd_sync: approx_sync_max_interval = 0.020000
+[rgbd_sync-10] [INFO] [1749740829.208351439] [rgbd_sync]: rgbd_sync: topic_queue_size  = 10
+[rgbd_sync-10] [INFO] [1749740829.208365127] [rgbd_sync]: rgbd_sync: sync_queue_size  = 10
+[rgbd_sync-10] [INFO] [1749740829.208378118] [rgbd_sync]: rgbd_sync: qos             = 0
+[rgbd_sync-10] [INFO] [1749740829.208392366] [rgbd_sync]: rgbd_sync: qos_camera_info = 0
+[rgbd_sync-10] [INFO] [1749740829.208406264] [rgbd_sync]: rgbd_sync: depth_scale = 1.000000
+[rgbd_sync-10] [INFO] [1749740829.208420931] [rgbd_sync]: rgbd_sync: decimation = 1
+[rgbd_sync-10] [INFO] [1749740829.208435248] [rgbd_sync]: rgbd_sync: compressed_rate = 0.000000
+[rtabmap_viz-12] [INFO] [1749740829.249823564] [rtabmap_viz]: rtabmap_viz: Using configuration from "/home/kimhoyun/.ros/rtabmapGUI.ini"
+[rgbd_sync-10] [INFO] [1749740829.256759016] [rgbd_sync]: 
+[rgbd_sync-10] rgbd_sync subscribed to (approx sync, max interval=0.020000s):
+[rgbd_sync-10]    /camera/image,
+[rgbd_sync-10]    /camera/depth_image,
+[rgbd_sync-10]    /camera/image/camera_info
+[lifecycle_manager-20] [INFO] [1749740829.316942818] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-18] [INFO] [1749740829.317471028] [bt_navigator]: Configuring
+[lifecycle_manager-20] [INFO] [1749740829.414191549] [lifecycle_manager_navigation]: [34m[1mConfiguring waypoint_follower[0m[0m
+[waypoint_follower-19] [INFO] [1749740829.414405892] [waypoint_follower]: Configuring
+[waypoint_follower-19] [INFO] [1749740829.427657724] [waypoint_follower]: Created waypoint_task_executor : wait_at_waypoint of type nav2_waypoint_follower::WaitAtWaypoint
+[lifecycle_manager-20] [INFO] [1749740829.428616086] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[controller_server-14] [INFO] [1749740829.704591339] [controller_server]: Activating
+[controller_server-14] [INFO] [1749740829.704647422] [local_costmap.local_costmap]: Activating
+[controller_server-14] [INFO] [1749740829.704663625] [local_costmap.local_costmap]: Checking transform
+[controller_server-14] [INFO] [1749740829.704693657] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Invalid frame ID "x500_rtab_0/odom" passed to canTransform argument target_frame - frame does not exist
+[controller_server-14] [INFO] [1749740830.204804303] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Invalid frame ID "x500_rtab_0/odom" passed to canTransform argument target_frame - frame does not exist
+[rtabmap_viz-12] libpng warning: iCCP: known incorrect sRGB profile
+[rtabmap_viz-12] libpng warning: iCCP: known incorrect sRGB profile
+[rtabmap_viz-12] libpng warning: iCCP: known incorrect sRGB profile
+[rtabmap_viz-12] [INFO] [1749740830.390383935] [rtabmap_viz]: Reading parameters from the ROS server...
+[controller_server-14] [INFO] [1749740830.704790770] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Invalid frame ID "x500_rtab_0/odom" passed to canTransform argument target_frame - frame does not exist
+[rtabmap-11] [INFO] [1749740831.049261152] [rtabmap]: rtabmap: 2D occupancy grid map loaded (494x436).
+[controller_server-14] [INFO] [1749740831.204755448] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Invalid frame ID "x500_rtab_0/odom" passed to canTransform argument target_frame - frame does not exist
+[controller_server-14] [INFO] [1749740831.704787661] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Invalid frame ID "x500_rtab_0/odom" passed to canTransform argument target_frame - frame does not exist
+[controller_server-14] [INFO] [1749740832.204760579] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Invalid frame ID "x500_rtab_0/odom" passed to canTransform argument target_frame - frame does not exist
+[rtabmap-11] [INFO] [1749740832.684509825] [rtabmap]: rtabmap: Working Memory = 705, Local map = 705.
+[rtabmap-11] [INFO] [1749740832.684623107] [rtabmap]: rtabmap: Database version = "0.21.10".
+[rtabmap-11] [INFO] [1749740832.684638403] [rtabmap]: rtabmap: Localization mode (Mem/IncrementalMemory=false)
+[controller_server-14] [INFO] [1749740832.704780290] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Invalid frame ID "x500_rtab_0/odom" passed to canTransform argument target_frame - frame does not exist
+[rtabmap-11] [INFO] [1749740832.718579398] [rtabmap]: Setup callbacks
+[rtabmap-11] [WARN] [1749740832.718673684] [rtabmap]: rtabmap: Parameters subscribe_depth and subscribe_rgbd cannot be true at the same time. Parameter subscribe_depth is set to false.
+[rtabmap-11] [INFO] [1749740832.718888935] [rtabmap]: rtabmap: subscribe_depth = false
+[rtabmap-11] [INFO] [1749740832.718913380] [rtabmap]: rtabmap: subscribe_rgb = false
+[rtabmap-11] [INFO] [1749740832.718928116] [rtabmap]: rtabmap: subscribe_stereo = false
+[rtabmap-11] [INFO] [1749740832.718940129] [rtabmap]: rtabmap: subscribe_rgbd = true (rgbd_cameras=1)
+[rtabmap-11] [INFO] [1749740832.718953259] [rtabmap]: rtabmap: subscribe_sensor_data = false
+[rtabmap-11] [INFO] [1749740832.718968065] [rtabmap]: rtabmap: subscribe_odom_info = true
+[rtabmap-11] [INFO] [1749740832.718980567] [rtabmap]: rtabmap: subscribe_user_data = false
+[rtabmap-11] [INFO] [1749740832.718993278] [rtabmap]: rtabmap: subscribe_scan = true
+[rtabmap-11] [INFO] [1749740832.719006269] [rtabmap]: rtabmap: subscribe_scan_cloud = false
+[rtabmap-11] [INFO] [1749740832.719017234] [rtabmap]: rtabmap: subscribe_scan_descriptor = false
+[rtabmap-11] [INFO] [1749740832.719027151] [rtabmap]: rtabmap: topic_queue_size = 10
+[rtabmap-11] [INFO] [1749740832.719036789] [rtabmap]: rtabmap: sync_queue_size  = 10
+[rtabmap-11] [INFO] [1749740832.719046288] [rtabmap]: rtabmap: qos_image       = 0
+[rtabmap-11] [INFO] [1749740832.719054808] [rtabmap]: rtabmap: qos_camera_info = 0
+[rtabmap-11] [INFO] [1749740832.719064377] [rtabmap]: rtabmap: qos_scan        = 0
+[rtabmap-11] [INFO] [1749740832.719072548] [rtabmap]: rtabmap: qos_odom        = 0
+[rtabmap-11] [INFO] [1749740832.719081558] [rtabmap]: rtabmap: qos_user_data   = 0
+[rtabmap-11] [INFO] [1749740832.719090567] [rtabmap]: rtabmap: approx_sync     = true
+[rtabmap-11] [INFO] [1749740832.719108726] [rtabmap]: Setup rgbd callback
+[rtabmap-11] [WARN] [1749740832.721714506] [rtabmap]: subscribe_odom_info ignored...
+[rtabmap-11] [INFO] [1749740832.721946937] [rtabmap]: 
+[rtabmap-11] rtabmap subscribed to (approx sync):
+[rtabmap-11]    /rgbd_image \
+[rtabmap-11]    /scan
+[rtabmap_viz-12] [INFO] [1749740832.850641023] [rtabmap_viz]: Parameters read = 386
+[rtabmap_viz-12] [INFO] [1749740832.850865703] [rtabmap_viz]: Parameters successfully read.
+[rtabmap_viz-12] [INFO] [1749740833.012702778] [rtabmap_viz]: rtabmap_viz: subscribe_depth = false
+[rtabmap_viz-12] [INFO] [1749740833.012800276] [rtabmap_viz]: rtabmap_viz: subscribe_rgb = false
+[rtabmap_viz-12] [INFO] [1749740833.012815292] [rtabmap_viz]: rtabmap_viz: subscribe_stereo = false
+[rtabmap_viz-12] [INFO] [1749740833.012828213] [rtabmap_viz]: rtabmap_viz: subscribe_rgbd = true (rgbd_cameras=1)
+[rtabmap_viz-12] [INFO] [1749740833.012841553] [rtabmap_viz]: rtabmap_viz: subscribe_sensor_data = false
+[rtabmap_viz-12] [INFO] [1749740833.012853007] [rtabmap_viz]: rtabmap_viz: subscribe_odom_info = true
+[rtabmap_viz-12] [INFO] [1749740833.012866416] [rtabmap_viz]: rtabmap_viz: subscribe_user_data = false
+[rtabmap_viz-12] [INFO] [1749740833.012879686] [rtabmap_viz]: rtabmap_viz: subscribe_scan = true
+[rtabmap_viz-12] [INFO] [1749740833.012892188] [rtabmap_viz]: rtabmap_viz: subscribe_scan_cloud = false
+[rtabmap_viz-12] [INFO] [1749740833.012905527] [rtabmap_viz]: rtabmap_viz: subscribe_scan_descriptor = false
+[rtabmap_viz-12] [INFO] [1749740833.012917889] [rtabmap_viz]: rtabmap_viz: topic_queue_size = 10
+[rtabmap_viz-12] [INFO] [1749740833.012930321] [rtabmap_viz]: rtabmap_viz: sync_queue_size  = 10
+[rtabmap_viz-12] [INFO] [1749740833.012941216] [rtabmap_viz]: rtabmap_viz: qos_image       = 0
+[rtabmap_viz-12] [INFO] [1749740833.012951762] [rtabmap_viz]: rtabmap_viz: qos_camera_info = 0
+[rtabmap_viz-12] [INFO] [1749740833.012961330] [rtabmap_viz]: rtabmap_viz: qos_scan        = 0
+[rtabmap_viz-12] [INFO] [1749740833.012970270] [rtabmap_viz]: rtabmap_viz: qos_odom        = 0
+[rtabmap_viz-12] [INFO] [1749740833.012978442] [rtabmap_viz]: rtabmap_viz: qos_user_data   = 0
+[rtabmap_viz-12] [INFO] [1749740833.012988080] [rtabmap_viz]: rtabmap_viz: approx_sync     = true
+[rtabmap_viz-12] [INFO] [1749740833.013006099] [rtabmap_viz]: Setup rgbd callback
+[rtabmap_viz-12] [WARN] [1749740833.016112571] [rtabmap_viz]: subscribe_odom_info ignored...
+[rtabmap_viz-12] [INFO] [1749740833.016237168] [rtabmap_viz]: 
+[rtabmap_viz-12] rtabmap_viz subscribed to (approx sync):
+[rtabmap_viz-12]    /rgbd_image \
+[rtabmap_viz-12]    /scan
+[rtabmap_viz-12] [INFO] [1749740833.019915431] [rtabmap_viz]: rtabmap_viz started.
+[controller_server-14] [INFO] [1749740833.204838065] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740833.704765376] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740834.204786343] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740834.704795717] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740835.204793358] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740835.704781010] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740836.204808961] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740836.704765744] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740837.204770786] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740837.704785956] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740838.204794350] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740838.704795830] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740839.204799964] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740839.704780910] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740840.204761018] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[controller_server-14] [INFO] [1749740840.704785335] [local_costmap.local_costmap]: Timed out waiting for transform from x500_rtab_0/base_footprint to x500_rtab_0/odom to become available, tf error: Could not find a connection between 'x500_rtab_0/odom' and 'x500_rtab_0/base_footprint' because they are not part of the same tree.Tf has two or more unconnected trees.
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[planner_server-16] [INFO] [1749740840.803023995] [rclcpp]: signal_handler(signum=2)
+[planner_server-16] [INFO] [1749740840.803310205] [planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[planner_server-16] [INFO] [1749740840.803493538] [planner_server]: Cleaning up
+[waypoint_follower-19] [INFO] [1749740840.803023995] [rclcpp]: signal_handler(signum=2)
+[waypoint_follower-19] [INFO] [1749740840.803310205] [waypoint_follower]: Running Nav2 LifecycleNode rcl preshutdown (waypoint_follower)
+[waypoint_follower-19] [INFO] [1749740840.803493538] [waypoint_follower]: Cleaning up
+[smoother_server-15] [INFO] [1749740840.803030141] [rclcpp]: signal_handler(signum=2)
+[smoother_server-15] [INFO] [1749740840.803310205] [smoother_server]: Running Nav2 LifecycleNode rcl preshutdown (smoother_server)
+[smoother_server-15] [INFO] [1749740840.803493538] [smoother_server]: Cleaning up
+[controller_server-14] [INFO] [1749740840.803030141] [rclcpp]: signal_handler(signum=2)
+[controller_server-14] [INFO] [1749740840.803311671] [controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[controller_server-14] [INFO] [1749740840.803442903] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[controller_server-14] [INFO] [1749740840.803948694] [local_costmap.local_costmap]: start
+[controller_server-14] [ERROR] [1749740840.804223380] [local_costmap.local_costmap]: Caught exception in callback for transition 13
+[controller_server-14] [ERROR] [1749740840.804231900] [local_costmap.local_costmap]: Original error: could not create subscription: rcl node's context is invalid, at ./src/rcl/node.c:428
+[controller_server-14] [ERROR] [1749740840.804259907] [local_costmap.local_costmap]: Failed to finish transition 3. Current state is now: errorprocessing (Could not publish transition: publisher's context is invalid, at ./src/rcl/publisher.c:389, at ./src/rcl_lifecycle.c:368)
+[controller_server-14] [INFO] [1749740840.804299996] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[controller_server-14] [ERROR] [1749740840.804563717] [controller_server]: Caught exception in callback for transition 13
+[controller_server-14] [ERROR] [1749740840.804569932] [controller_server]: Original error: could not create publisher: rcl node's context is invalid, at ./src/rcl/node.c:428
+[controller_server-14] [ERROR] [1749740840.804581456] [controller_server]: Failed to finish transition 3. Current state is now: errorprocessing (Could not publish transition: publisher's context is invalid, at ./src/rcl/publisher.c:389, at ./src/rcl_lifecycle.c:368)
+[bt_navigator-18] [INFO] [1749740840.803022598] [rclcpp]: signal_handler(signum=2)
+[bt_navigator-18] [INFO] [1749740840.806184384] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)
+[bt_navigator-18] [INFO] [1749740840.806354727] [bt_navigator]: Cleaning up
+[lifecycle_manager-20] [INFO] [1749740840.803022598] [rclcpp]: signal_handler(signum=2)
+[lifecycle_manager-20] [INFO] [1749740840.803385563] [lifecycle_manager_navigation]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_navigation)
+[behavior_server-17] [INFO] [1749740840.803023995] [rclcpp]: signal_handler(signum=2)
+[behavior_server-17] [INFO] [1749740840.803311671] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)
+[behavior_server-17] [INFO] [1749740840.803493538] [behavior_server]: Cleaning up
+[rgbd_sync-10] [INFO] [1749740840.803054027] [rclcpp]: signal_handler(signum=2)
+[rtabmap-11] [INFO] [1749740840.803048789] [rclcpp]: signal_handler(signum=2)
+[rviz2-13] [INFO] [1749740840.803048789] [rclcpp]: signal_handler(signum=2)
+[rviz2-13] 
+[rviz2-13] >>> [rcutils|error_handling.c:108] rcutils_set_error_state()
+[rviz2-13] This error state is being overwritten:
+[rviz2-13] 
+[rviz2-13]   'rcl node's context is invalid, at ./src/rcl/node.c:428'
+[rviz2-13] 
+[rviz2-13] with this new error message:
+[rviz2-13] 
+[rviz2-13]   'the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130'
+[rviz2-13] 
+[rviz2-13] rcutils_reset_error() should be called after error handling to avoid this.
+[rviz2-13] <<<
+[rviz2-13] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[rviz2-13]   what():  failed to initialize wait set: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/wait.c:130
+[parameter_bridge-4] [INFO] [1749740840.803116884] [rclcpp]: signal_handler(signum=2)
+[robot_state_publisher-1] [INFO] [1749740840.803116884] [rclcpp]: signal_handler(signum=2)
+[relay-5] [INFO] [1749740840.803116884] [rclcpp]: signal_handler(signum=2)
+[rtabmap_viz-12] [INFO] [1749740840.803225766] [rtabmap_viz]: rtabmap_viz stopping spinner...
+[velocity_transform.py-7] Traceback (most recent call last):
+[velocity_transform.py-7]   File "/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/velocity_transform.py", line 158, in <module>
+[velocity_transform.py-7]     main()
+[velocity_transform.py-7]   File "/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/velocity_transform.py", line 152, in main
+[velocity_transform.py-7]     rclpy.spin(node)
+[velocity_transform.py-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[velocity_transform.py-7]     executor.spin_once()
+[velocity_transform.py-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[velocity_transform.py-7]     self._spin_once_impl(timeout_sec)
+[velocity_transform.py-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[velocity_transform.py-7]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[velocity_transform.py-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[velocity_transform.py-7]     return next(self._cb_iter)
+[velocity_transform.py-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[image_transform.py-6] Traceback (most recent call last):
+[image_transform.py-6]   File "/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/image_transform.py", line 54, in <module>
+[image_transform.py-6]     main()
+[image_transform.py-6]   File "/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/image_transform.py", line 49, in main
+[image_transform.py-6]     rclpy.spin(node)
+[image_transform.py-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 226, in spin
+[image_transform.py-6]     executor.spin_once()
+[image_transform.py-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 751, in spin_once
+[image_transform.py-6]     self._spin_once_impl(timeout_sec)
+[image_transform.py-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 740, in _spin_once_impl
+[image_transform.py-6]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[image_transform.py-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 723, in wait_for_ready_callbacks
+[image_transform.py-6]     return next(self._cb_iter)
+[image_transform.py-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 620, in _wait_for_ready_callbacks
+[image_transform.py-6]     wait_set.wait(timeout_nsec)
+[image_transform.py-6] KeyboardInterrupt
+[velocity_transform.py-7]     wait_set.wait(timeout_nsec)
+[velocity_transform.py-7] KeyboardInterrupt
+[rtabmap_viz-12] [INFO] [1749740840.808534405] [rtabmap_viz]: rtabmap_viz: All done! Closing...
+[waypoint_follower-19] [INFO] [1749740840.823943635] [waypoint_follower]: Destroying bond (waypoint_follower) to lifecycle manager.
+[behavior_server-17] [INFO] [1749740840.833770588] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[waypoint_follower-19] [INFO] [1749740840.852677052] [waypoint_follower]: Destroying
+[rtabmap-11] [INFO] [1749740840.860605229] [rtabmap]: Parameters are not saved (No configuration file provided...)
+[smoother_server-15] [INFO] [1749740840.863506508] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[planner_server-16] [INFO] [1749740840.866086865] [global_costmap.global_costmap]: Cleaning up
+[controller_server-14] Warning: class_loader.ClassLoader: SEVERE WARNING!!! Attempting to unload library while objects created by this loader exist in the heap! You should delete your objects before attempting to unload the library or destroying the ClassLoader. The library will NOT be unloaded.
+[controller_server-14]          at line 127 in ./src/class_loader.cpp
+[controller_server-14] terminate called without an active exception
+[smoother_server-15] [INFO] [1749740840.876896904] [smoother_server]: Destroying
+[planner_server-16] [INFO] [1749740840.891896445] [planner_server]: Cleaning up plugin GridBased of type NavfnPlanner
+[planner_server-16] [INFO] [1749740840.895528613] [planner_server]: Destroying plugin GridBased of type NavfnPlanner
+[bt_navigator-18] [INFO] [1749740840.913932150] [bt_navigator]: Completed Cleaning up
+[bt_navigator-18] [INFO] [1749740840.914143629] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[behavior_server-17] [INFO] [1749740840.922373591] [behavior_server]: Destroying
+[planner_server-16] [INFO] [1749740840.923275382] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[planner_server-16] [INFO] [1749740840.929239062] [global_costmap.global_costmap]: Destroying
+[odom_baselink_publisher.py-3] Traceback (most recent call last):
+[odom_baselink_publisher.py-3]   File "/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/odom_baselink_publisher.py", line 110, in <module>
+[odom_baselink_publisher.py-3]     main()
+[odom_baselink_publisher.py-3]   File "/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/odom_baselink_publisher.py", line 107, in main
+[odom_baselink_publisher.py-3]     rclpy.shutdown()
+[odom_baselink_publisher.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[odom_baselink_publisher.py-3]     _shutdown(context=context)
+[odom_baselink_publisher.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[odom_baselink_publisher.py-3]     return context.shutdown()
+[odom_baselink_publisher.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[odom_baselink_publisher.py-3]     self.__context.shutdown()
+[odom_baselink_publisher.py-3] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[planner_server-16] [INFO] [1749740840.963548960] [planner_server]: Destroying
+[bt_navigator-18] [INFO] [1749740840.966944645] [bt_navigator]: Destroying
+[INFO] [relay-5]: process has finished cleanly [pid 70668]
+[INFO] [parameter_bridge-4]: process has finished cleanly [pid 70666]
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 70660]
+[INFO] [waypoint_follower-19]: process has finished cleanly [pid 70714]
+[ERROR] [image_transform.py-6]: process has died [pid 70670, exit code -2, cmd '/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/image_transform.py --ros-args -r __node:=image_transform --params-file /tmp/launch_params_m7emeki7'].
+[INFO] [rgbd_sync-10]: process has finished cleanly [pid 70677]
+[ERROR] [velocity_transform.py-7]: process has died [pid 70672, exit code -2, cmd '/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/velocity_transform.py --ros-args -r __node:=velocity_transform --params-file /tmp/launch_params_2fnhize6'].
+[INFO] [smoother_server-15]: process has finished cleanly [pid 70689]
+[INFO] [behavior_server-17]: process has finished cleanly [pid 70705]
+[INFO] [planner_server-16]: process has finished cleanly [pid 70697]
+[INFO] [bt_navigator-18]: process has finished cleanly [pid 70711]
+[INFO] [joint_state_publisher-2]: process has finished cleanly [pid 70662]
+[ERROR] [rtabmap_viz-12]: process has died [pid 70681, exit code 255, cmd '/opt/ros/humble/lib/rtabmap_viz/rtabmap_viz --ros-args -p use_sim_time:=True --params-file /tmp/launch_params_hhpb7xlq -r rgb/image:=/camera/image -r depth/image:=/camera/depth_image -r rgb/camera_info:=/camera/image/camera_info -r scan:=/scan -r odom:=/odom -r imu:=/imu'].
+[ERROR] [odom_baselink_publisher.py-3]: process has died [pid 70664, exit code 1, cmd '/home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/lib/rtabmap_nav2_px4/odom_baselink_publisher.py --ros-args -r __node:=map_baselink_publisher --params-file /tmp/launch_params_adjto82l'].
+[rtabmap-11] rtabmap: Saving database/long-term memory... (located at /home/kimhoyun/.ros/rtabmap.db)
+[rtabmap-11] rtabmap: 2D occupancy grid map saved.
+[rtabmap-11] rtabmap: Saving database/long-term memory...done! (located at /home/kimhoyun/.ros/rtabmap.db, 573 MB)
+[INFO] [rtabmap-11]: process has finished cleanly [pid 70679]
+[ERROR] [rviz2-13]: process has died [pid 70683, exit code -6, cmd '/opt/ros/humble/lib/rviz2/rviz2 -d /home/kimhoyun/nav2_slam_px4/install/rtabmap_nav2_px4/share/rtabmap_nav2_px4/rviz/nav2.rviz --ros-args -r __node:=rviz2 -p use_sim_time:=True'].
+[lifecycle_manager-20] [ERROR] [1749740842.807498635] [lifecycle_manager_navigation]: Failed to change state for node: controller_server. Exception: controller_server/get_state service client: async_send_request failed.
+[lifecycle_manager-20] [ERROR] [1749740842.807680781] [lifecycle_manager_navigation]: Failed to bring up all requested nodes. Aborting bringup.
+[lifecycle_manager-20] [INFO] [1749740842.811991108] [lifecycle_manager_navigation]: Destroying lifecycle_manager_navigation
+[INFO] [lifecycle_manager-20]: process has finished cleanly [pid 70735]
+[ERROR] [controller_server-14]: process has died [pid 70687, exit code -6, cmd '/opt/ros/humble/lib/nav2_controller/controller_server --ros-args -p use_sim_time:=True --params-file /tmp/tmp4l43e7ch -r /tf:=tf -r /tf_static:=tf_static'].

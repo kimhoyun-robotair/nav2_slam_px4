@@ -11,6 +11,11 @@
 
 RTAB-MAP is currently set to **localization mode**, which operates based on the rtabmap.db file in the `.ros` directory. **If you haven’t performed mapping with RTAB-MAP yet, open `rtabmap.launch.py`, disable localization mode, and then run mapping.**
 
+```python
+# 66th row in rtabmap.launch.py
+DeclareLaunchArgument('localization', default_value='true', description='Launch in localization mode.'),
+```
+
 ## Basic Usage
 
 ### Installation

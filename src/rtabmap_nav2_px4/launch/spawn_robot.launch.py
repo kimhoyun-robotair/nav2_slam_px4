@@ -149,5 +149,5 @@ def generate_launch_description():
     launchDescriptionObject.add_action(image_transformer_node)
     launchDescriptionObject.add_action(velocity_transformer_node)
     launchDescriptionObject.add_action(tracking_log_node)
-
+    
     return launchDescriptionObject
