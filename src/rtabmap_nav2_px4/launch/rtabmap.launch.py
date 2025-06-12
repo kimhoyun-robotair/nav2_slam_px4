@@ -63,7 +63,7 @@ def generate_launch_description():
         # Launch arguments
         DeclareLaunchArgument('rtabmap_viz',  default_value='true',  description='Launch RTAB-Map UI (optional).'),
         DeclareLaunchArgument('rviz',         default_value='true', description='Launch RVIZ (optional).'),
-        DeclareLaunchArgument('localization', default_value='true', description='Launch in localization mode.'),
+        DeclareLaunchArgument('localization', default_value='false', description='Launch in localization mode.'),
         DeclareLaunchArgument('rviz_cfg', default_value=config_rviz,  description='Configuration path of rviz2.'),
 
         SetParameter(name='use_sim_time', value=True),
