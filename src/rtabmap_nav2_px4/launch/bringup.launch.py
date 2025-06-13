@@ -65,6 +65,8 @@ def generate_launch_description():
         use_sim_time_arg,
         spawn_robot,
         rtabmap,
-        navigation,
+        # navigation,
+        # if you want to use package in SLAM mode, comment out the line above
+        # else, uncomment the line above
         offboard_vel_ctrl,
     ])

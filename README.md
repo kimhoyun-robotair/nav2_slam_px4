@@ -47,6 +47,9 @@ source install/setup.bash
 ros2 launch rtabmap_nav2_px4 bringup.launch.py
 ```
 
+You can switch the mode for Drone (SLAM or Navigation) in `bringup.launch.py`
+If you want to use package for Navigation, Pleaze Uncomment the line navigation in `bringup.launch.py`.
+
 - The following nodes will run:
 1. TF publishing (odom ↔ base_link ↔ sensor_link etc)
 2. Keyboard-based PX4 velocity control node (in a separate terminal)
@@ -57,14 +60,23 @@ ros2 launch rtabmap_nav2_px4 bringup.launch.py
 ### Setting up the Gazebo Development Environment (optional)
 **It is recommended to use your own custom map**
 
-- Go to the `~/nav2_slam_px4/src/nav2_px4` package.
-- Copy the **lidar_2d_v2** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
-- Copy the **OakD-Lite** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
-- Copy the **turtlebot3_world** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
-- Copy the **x500_rtab** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
-  - This model is a quadcopter with a 2D lidar, RGB-D camera, and Visual Odometry.
-- Copy the **turtlebot3_world.sdf** file from the internal world directory to `~/PX4-Autopilot/Tools/simulation/gz/worlds`.
-- Add a file named **4015_gz_x500_rtab** to `~/PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/airframes` with the following content:
+1. Go to the `~/nav2_slam_px4/src/nav2_px4` package.
+
+2. Copy the **lidar_2d_v2** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
+   
+3. Copy the **OakD-Lite** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
+
+4. Copy the **turtlebot3_world** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
+
+5. Copy the **x500_rtab** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`. This model is a quadcopter with a 2D lidar, RGB-D camera, and Visual Odometry.
+
+6. Copy the **apt** directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/models`.
+
+7. Copy the **apt_world.sdf** world file directory from the internal model directory to `~/PX4-Autopilot/Tools/simulation/gz/worlds`.
+
+8. Copy the **turtlebot3_world.sdf** file from the internal world directory to `~/PX4-Autopilot/Tools/simulation/gz/worlds`.
+
+9. Add a file named **4015_gz_x500_rtab** to `~/PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/airframes` with the following content:
 
 ```bash
 #!/bin/sh
