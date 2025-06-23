@@ -149,15 +149,15 @@ controller_server:
     FollowPath:
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: True
-      min_vel_x: -2.0
+      min_vel_x: -1.0
       min_vel_y: 0.0
-      max_vel_x: 2.0
+      max_vel_x: 2.5
       max_vel_y: 0.0
       max_vel_theta: 1.5
       min_speed_xy: 0.0
       max_speed_xy: 2.5
       min_speed_theta: 0.0
-      acc_lim_x: 0.5
+      acc_lim_x: 0.7
       acc_lim_y: 0.0
       acc_lim_theta: 1.0
       decel_lim_x: -0.5
@@ -236,16 +236,12 @@ local_costmap:
           obstacle_max_range: 6.0
           obstacle_min_range: 0.0
 
-        #depth_cloud:
-        #  topic: /camera/depth_image/points
-        #  max_obstacle_height: 5.0
-        #  clearing: True
-        #  marking: True
-        #  data_type: "PointCloud2"
-        #  raytrace_max_range: 8.0
-        #  raytrace_min_range: 0.3
-        #  obstacle_max_range: 5.0
-        #  obstacle_min_range: 0.3
+        pointcloud:
+          topic: /camera/depth_image/points
+          max_obstacle_height: 5.0
+          clearing: True
+          marking: True
+          data_type: "PointCloud2"
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
@@ -301,6 +297,12 @@ global_costmap:
           raytrace_min_range: 0.0
           obstacle_max_range: 6.0
           obstacle_min_range: 0.0
+        pointcloud:
+          topic: /camera/depth_image/points
+          max_obstacle_height: 5.0
+          clearing: True
+          marking: True
+          data_type: "PointCloud2"
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"

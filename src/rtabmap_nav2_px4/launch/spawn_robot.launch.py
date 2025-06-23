@@ -37,7 +37,7 @@ def generate_launch_description():
         package="ros_gz_bridge",
         executable="parameter_bridge",
         arguments=[
-            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
+            "/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock",
             "/model/x500_rtab_0/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry",
             "/camera@sensor_msgs/msg/Image@gz.msgs.Image",
             "/depth_camera@sensor_msgs/msg/Image@gz.msgs.Image",

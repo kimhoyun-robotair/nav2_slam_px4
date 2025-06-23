@@ -16,6 +16,8 @@ RTAB-MAP is currently set to **localization mode**, which operates based on the 
 DeclareLaunchArgument('localization', default_value='true', description='Launch in localization mode.'),
 ```
 
+**And Plz Change the topic name in ros-gz bridge in spawn_robot.launch.py before you use**
+
 ## Basic Usage
 
 ### Installation
