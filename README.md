@@ -16,7 +16,7 @@ RTAB-MAP is currently set to **localization mode**, which operates based on the 
 DeclareLaunchArgument('localization', default_value='true', description='Launch in localization mode.'),
 ```
 
-**And Plz Change the topic name in ros-gz bridge in spawn_robot.launch.py before you use**
+**And please change the topic name in the ros-gz bridge in `spawn_robot.launch.py` before use.**
 
 ## Basic Usage
 
@@ -47,10 +47,13 @@ cd ~/path/to/QGC
 cd ~/path/to/nav2_slam_px4
 source install/setup.bash
 ros2 launch rtabmap_nav2_px4 bringup.launch.py
+# or
+# ros2 launch rtabmap_nav2_px4 autonomous_exploration.launch.py
+# I recommend this one.
 ```
 
 You can switch the mode for Drone (SLAM or Navigation) in `bringup.launch.py`
-If you want to use package for Navigation, Pleaze Uncomment the line navigation in `bringup.launch.py`.
+If you want to use the package for navigation, please uncomment the `navigation` line in `bringup.launch.py`.
 
 - The following nodes will run:
 1. TF publishing (odom ↔ base_link ↔ sensor_link etc)
